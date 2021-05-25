@@ -1,21 +1,18 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="#87ceeb"
-      dark
-    >
+    <v-app-bar app color="primary" dark>
       <v-app-bar-nav-icon @click="drawer = !drawer" />
-      <site-title :title="title"></site-title>
+      <site-title :title="site.title"></site-title>
       <v-spacer/>
+      <site-sign></site-sign>
     </v-app-bar>
     <v-navigation-drawer app v-model="drawer">
-      <site-menu></site-menu>
+      <site-menu :items="site.menu"></site-menu>
     </v-navigation-drawer>
-    <v-content>
+    <v-main>
       <router-view/>
-    </v-content>
-    <site-footer :footer="footer"></site-footer>
+    </v-main>
+    <site-footer :footer="site.footer"></site-footer>
   </v-app>
 </template>
 
@@ -23,18 +20,54 @@
 import SiteTitle from '@/views/site/title'
 import SiteFooter from '@/views/site/footer'
 import SiteMenu from '@/views/site/menu'
+import SiteSign from '@/views/site/sign'
+
 export default {
-  components: { SiteTitle, SiteFooter, SiteMenu },
+  components: { SiteTitle, SiteFooter, SiteMenu, SiteSign },
   name: 'App',
   data () {
     return {
       drawer: false,
-      items: [],
-      title: 'Carbon Neutral Network',
-      footer: '푸터입니다'
+      site: {
+        menu: [],
+        title: '',
+        footer: {
+          email: 'email. ljy2905.92@gmail.com',
+          sn: '고유번호. 612-80-31517',
+          head: '대표. 박희정'
+        }
+      }
     }
   },
-  mounted () {
+  created () {
+    this.subscribe()
+  },
+  methods: {
+    subscribe () {
+      this.$firebase.database().ref().child('site').on('value', (sn) => {
+        const v = sn.val()
+        if (!v) {
+          this.$firebase.database().ref().child('site').set(this.site)
+        }
+        this.site = v
+        console.log(v)
+      }, (e) => {
+        console.log(e.message)
+      })
+    },
+    save () {
+      throw new Error('Parameter is not a number!')
+    },
+    read () {
+      this.$firebase.database().ref().child('abcd').on('value', (sn) => {
+        console.log(sn)
+        console.log(sn.val())
+      })
+    },
+    async readOne () {
+      const sn = await this.$firebase.database().ref().child('abcd').once('value')
+      console.log(sn.val())
+    }
   }
 }
 </script>

@@ -42,16 +42,16 @@ export default {
     return {
       items: [
         {
-          title: 'home',
+          title: '홈',
           icon: 'mdi-home',
           subItems: [
             {
-              title: 'Dashboard',
+              title: '소개',
               to: '/'
             },
             {
-              title: 'About',
-              to: '/about'
+              title: '공지사항',
+              to: '/board'
             }
           ]
         },
