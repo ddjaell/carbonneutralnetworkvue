@@ -1,5 +1,5 @@
 <template>
-  <v-footer app color="#87ceeb" dark absolute :footer="footer">
+  <v-footer app color="#f0f3f7" dark absolute :footer="footer">
     <v-spacer></v-spacer>
     <div>
       <h1>탄소중립네트워크</h1><br>

@@ -6,7 +6,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    editable: true,
+    editable: false,
     fireUser: null,
     adminEmail: 'ljy2905.92@gmail.com',
     adminYn: false
@@ -21,6 +21,7 @@ export default new Vuex.Store({
       if (!isEmpty(state.fireUser)) {
         if (state.fireUser.email === state.adminEmail) {
           state.adminYn = true
+          state.editable = true
         }
       }
     }
