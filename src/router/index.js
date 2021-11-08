@@ -47,13 +47,13 @@ const routes = [
     component: () => import('../views/error')
   },
   {
-    path: '/:collection/:document/:action',
-    name: 'collection-document-action',
+    path: '/:collection/:document',
+    name: 'collection-document',
     component: () => import('../views/renderer')
   },
   {
-    path: '/:collection/:document',
-    name: 'collection-document',
+    path: '/:collection/:document/:action',
+    name: 'collection-document-action',
     component: () => import('../views/renderer')
   }
 ]
