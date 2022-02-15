@@ -1,11 +1,13 @@
 <template>
-  <v-footer app color="#f0f3f7" dark absolute :footer="footer">
+  <v-footer color="primary" :footer="footer">
     <v-spacer></v-spacer>
     <div>
-      <h1>탄소중립네트워크</h1><br>
+      Carbon Neutral Network<br>
+      {{ this.footer.head }}<br>
+    </div>
+    <div>
       {{ this.footer.email }}<br>
       {{ this.footer.sn }}<br>
-      {{ this.footer.head }}<br>
       &copy; {{ new Date().getFullYear() }}<br>
     </div>
   </v-footer>

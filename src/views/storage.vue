@@ -25,7 +25,6 @@ export default {
     },
     async read () {
       const r = await axios.get(this.url)
-      console.log(r)
       this.text = 'result data = ' + r.data
     }
   }

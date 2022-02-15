@@ -3,10 +3,10 @@
     <v-list-item three-line>
       <v-list-item-content>
         <v-list-item-title class="title">
-          Menu
+          탄소중립네트워크
         </v-list-item-title>
         <v-list-item-subtitle>
-          0.0.1
+          carbon neutral Network
         </v-list-item-subtitle>
       </v-list-item-content>
     </v-list-item>
@@ -18,13 +18,13 @@
         :key="i"
         v-model="item.active"
         :prepend-icon="item.icon"
-        :no-action="!$store.state.editable"
+        :no-action="!$store.state.adminYn"
       >
         <template v-slot:activator>
           <v-list-item-content>
             <v-list-item-title>
               {{ item.title }}
-              <span v-if="$store.state.editable">
+              <span v-if="$store.state.adminYn">
                 <v-btn icon @click="openDialogItem(i)"><v-icon>mdi-pencil</v-icon></v-btn>
               </span>
             </v-list-item-title>
@@ -34,22 +34,22 @@
         <v-list-item
           v-for="(subItem, j) in item.subItems"
           :key="j"
-          :to="$store.state.editable ? null : subItem.to"
+          :to="$store.state.adminYn ? null : subItem.to"
         >
           <v-list-item-content>
-            <v-list-item-title :class="$store.state.editable ? 'pl-4':''">
+            <v-list-item-title :class="$store.state.adminYn ? 'pl-4':''">
               {{ subItem.title }}
-              <span v-if="$store.state.editable">
+              <span v-if="$store.state.adminYn">
                 <v-btn icon @click="openDialogSubItem(i, j)"><v-icon>mdi-pencil</v-icon></v-btn>
               </span>
             </v-list-item-title>
           </v-list-item-content>
-          <v-list-item-action v-if="$store.state.editable">
+          <v-list-item-action v-if="$store.state.adminYn">
             <v-btn icon :to="subItem.to" exact><v-icon>mdi-arrow-right-bold-circle-outline</v-icon></v-btn>
           </v-list-item-action>
         </v-list-item>
-        <v-list-item @click="openDialogSubItem(i, -1)" v-if="$store.state.editable">
-          <v-list-item-icon :class="$store.state.editable ? 'pl-4':''">
+        <v-list-item @click="openDialogSubItem(i, -1)" v-if="$store.state.adminYn">
+          <v-list-item-icon :class="$store.state.adminYn ? 'pl-4':''">
             <v-icon>mdi-plus</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
@@ -57,7 +57,7 @@
           </v-list-item-content>
         </v-list-item>
       </v-list-group>
-      <v-list-item @click="openDialogItem(-1)" v-if="$store.state.editable">
+      <v-list-item @click="openDialogItem(-1)" v-if="$store.state.adminYn">
         <v-list-item-icon><v-icon>mdi-plus</v-icon></v-list-item-icon>
         <v-list-item-content>
           <v-list-item-title>추가하기</v-list-item-title>

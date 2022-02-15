@@ -8,7 +8,7 @@ export default new Vuex.Store({
   state: {
     editable: false,
     fireUser: null,
-    adminEmail: 'ljy2905.92@gmail.com',
+    adminEmail: ['ljy2905.92@gmail.com'],
     adminYn: false
   },
   mutations: {
@@ -19,7 +19,8 @@ export default new Vuex.Store({
       state.fireUser = fu
       state.adminYn = false
       if (!isEmpty(state.fireUser)) {
-        if (state.fireUser.email === state.adminEmail) {
+        if (state.adminEmail.includes(state.fireUser.email)) {
+          state.fireUser.level = 1
           state.adminYn = true
           state.editable = true
         }

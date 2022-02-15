@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app color="#f0f3f7" dark>
+    <v-app-bar app color="primary">
       <v-app-bar-nav-icon @click="drawer = !drawer" />
       <site-title :title="site.title"></site-title>
       <v-spacer/>
@@ -50,7 +50,6 @@ export default {
           this.$firebase.database().ref().child('site').set(this.site)
         }
         this.site = v
-        console.log(v)
       }, (e) => {
         console.log(e.message)
       })
@@ -60,8 +59,6 @@ export default {
     },
     read () {
       this.$firebase.database().ref().child('abcd').on('value', (sn) => {
-        console.log(sn)
-        console.log(sn.val())
       })
     },
     async readOne () {
